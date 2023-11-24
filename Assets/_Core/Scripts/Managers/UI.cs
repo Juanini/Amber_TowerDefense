@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using HannieEcho.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class UI : MonoBehaviour
     [BoxGroup("UI")] public UIManager uiManager;
     [BoxGroup("UI")] public UINavigation nav;
     [BoxGroup("UI")] public TowerOptionsUI towerOptionsUI;
+    [BoxGroup("UI")] public Image fadePanel;
 
     // * =====================================================================================================================================
     // * MAIN
@@ -43,4 +46,27 @@ public class UI : MonoBehaviour
     {
         towerOptionsUI.ShowTowerOptions(_tower);
     }
+    
+    // * =====================================================================================================================================
+    // * FADE PANEL
+
+    public async UniTask FadeInPanel()
+    {
+        SetFadePanelAlpha(0);
+        await fadePanel.DOFade(1, 0.25f).AsyncWaitForCompletion();
+    }
+    
+    public async UniTask FadeOutPanel()
+    {
+        SetFadePanelAlpha(1);
+        await fadePanel.DOFade(0, 0.25f).AsyncWaitForCompletion();
+    }
+
+    private void SetFadePanelAlpha(int _value)
+    {
+        var c = fadePanel.color;
+        c.a = _value;
+        fadePanel.color = c;
+    }
 }
+

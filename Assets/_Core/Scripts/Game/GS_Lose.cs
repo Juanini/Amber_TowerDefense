@@ -9,9 +9,9 @@ public class GS_Lose : StateBase<GameState>
     {
     }
 
-    public override UniTask EnterState()
+    public override async UniTask EnterState()
     {
-        return default;
+        await UI.Ins.nav.ShowPopup<LoseView>();
     }
 
     public override UniTask ExitState()

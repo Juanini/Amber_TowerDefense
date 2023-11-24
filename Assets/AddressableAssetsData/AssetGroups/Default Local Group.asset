@@ -41,6 +41,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1c70906349774344bd0a73b9e13c4e2
+    m_Address: Assets/_Core/Prefabs/UI/Views/LoseView.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2678059cb15c142a68a34a09db38f58c, type: 2}
   m_SchemaSet:

@@ -3,7 +3,12 @@ public class GameConst
 {
     public const string TAG_ENEMY = "Enemy";
     public const string TAG_PLAYER = "Player";
+
+    public const string LEVEL_1 = "Level1";
+    public const string LEVEL_2 = "Level2";
 }
+
+public enum Direction { UP = 0, DOWN, RIGHT, LEFT }
 
 public enum GameState
 {
@@ -38,4 +43,11 @@ public enum TowerNodeState
 {
     Available = 0,
     Busy
+}
+
+public enum EnemyType
+{
+    Devil = 0,
+    Tank,
+    Berserk
 }

@@ -1,18 +1,30 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using GameEventSystem;
 using HannieEcho.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : StateMachine<GameState>
 {
     public static GameManager Ins;
 
-    private int playerLife;
-    public int PlayerLife => playerLife;
+    private int playerHealth;
+    public int PlayerHealth => playerHealth;
     
+    private int playerGold;
+    public int PlayerGold => playerGold;
+
+    private Level levelActive;
+    public Level LevelActive => levelActive;
+    
+    [HideInInspector] public TowerType towerTypeToCreate;
+    
+    public Enemy enemyTest;
+
     // * =====================================================================================================================================
     // * MAIN
 
@@ -23,11 +35,18 @@ public class GameManager : StateMachine<GameState>
         Ins = this;
     }
     
+    private void Start()
+    {
+        Init();
+    }
+    
     private async void Init()
     {
         await UI.Ins.Init();
         await UI.Ins.nav.ShowDialog<IngameView>();
-        
+
+        await LoadSceneAsync(GameConst.LEVEL_1);
+
         AddState( GameState.Idle,         new GS_Idle(GameState.Idle), this);
         AddState( GameState.CreateTower,  new GS_CreateTower(GameState.CreateTower), this);
         AddState( GameState.Win,          new GS_Win(GameState.Win),          this);
@@ -38,29 +57,52 @@ public class GameManager : StateMachine<GameState>
         await EnterInitialState(States[GameState.Idle]);
     }
 
-    private void Start()
+    #endregion
+    
+    // * =====================================================================================================================================
+    // * LEVELS
+    
+    public async UniTask OnLevelLoaded(Level _level)
     {
-        Init();
+        
+        levelActive = _level;
+        playerHealth = levelActive.levelConfig.PlayerHealth;
+        playerGold = levelActive.levelConfig.InitialGold;
+        
+        await UI.Ins.FadeOutPanel();
+
+        GameEventManager.TriggerEvent(GameEvents.UPDATE_INGAME_UI);
+
+        enemyTest.Init();
     }
     
-    #endregion
+    public async UniTask LoadSceneAsync(string sceneName)
+    {
+        await SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive).ToUniTask();
+    }
+    
+    // * =====================================================================================================================================
+    // * FLOW
 
     public void OnEnemyInvaded(Enemy _enemy)
     {
-        playerLife -= _enemy.GetAttackValue();
+        Trace.Log(this.name + " - " + "ENEMY INVADED!");
+        playerHealth -= _enemy.GetAttackValue();
 
-        if (playerLife < 0)
+        if (playerHealth < 0)
         {
-            playerLife = 0;
+            playerHealth = 0;
         }
         
         GameEventManager.TriggerEvent(GameEvents.ENEMY_INVADED);
+        GameEventManager.TriggerEvent(GameEvents.UPDATE_INGAME_UI);
+        
         CheckPlayerLife();
     }
 
     private void CheckPlayerLife()
     {
-        if (playerLife <= 0)
+        if (playerHealth <= 0)
         {
             TransitionToState(GameState.Lose);
         }
@@ -70,18 +112,16 @@ public class GameManager : StateMachine<GameState>
     {
         
     }
-
-    
     
     // * =====================================================================================================================================
-    // * 
+    // * TOWERS
 
-    public TowerType towerTypeToCreate;
-    
     public void OnCreateTower(TowerType _towerType)
     {
         towerTypeToCreate = _towerType;
         
         TransitionToState(GameState.CreateTower);
     }
+    
+    
 }
