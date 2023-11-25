@@ -29,7 +29,7 @@ public class IconWithInfo : MonoBehaviour
             animTween.Kill();
         }
         
-        animTween = transform.DOPunchPosition(new Vector3(0, 1, 0), 0.25f);
+        animTween = transform.DOPunchPosition(new Vector3(0, 4, 0), 0.25f);
         DOTween.To(() => currentValue, x => currentValue = x, _newValue, 0.5f).OnUpdate(OnAnimUpdate);
     }
 

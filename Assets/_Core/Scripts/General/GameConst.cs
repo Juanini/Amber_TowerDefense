@@ -8,6 +8,11 @@ public class GameConst
     public const string LEVEL_2 = "Level2";
 
     public const int TOWER_STANDARD_DAMAGE = 10;
+
+    public const int ENEMY_PATH_MOVEMENT = 70;
+    public const float ENEMY_PATH_MOVEMENT_SLOW = 1.5f;
+    public const float ENEMY_PATH_MOVEMENT_NORMAL = 1;
+    public const float ENEMY_PATH_MOVEMENT_FAST = 0.6f;
 }
 
 public enum Direction { UP = 0, DOWN, RIGHT, LEFT }
@@ -51,5 +56,13 @@ public enum EnemyType
 {
     Devil = 0,
     Agile,
-    Berserk
+    Berserk,
+    NoEnemy
+}
+
+public enum EnemySpeedType
+{
+    Slow = 0,
+    Normal,
+    Fast
 }

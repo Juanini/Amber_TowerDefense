@@ -5,6 +5,6 @@ public class EnemyConfig : ScriptableObject
 {
     public int health;
     public int attackValue;
-    public float speed;
+    public EnemySpeedType speedType;
     public float goldToGive;
 }

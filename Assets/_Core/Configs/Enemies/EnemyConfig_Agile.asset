@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 600
   attackValue: 1
-  speed: 0
+  speedType: 2
   goldToGive: 100

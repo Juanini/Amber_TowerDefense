@@ -37,7 +37,27 @@ public class Enemy : MonoBehaviour
         Vector3[] worldPath = GameManager.Ins.LevelActive.path.path.wps;
 
         transform.position = worldPath[0];
-        transform.DOPath(worldPath,60).SetEase(Ease.Linear).OnUpdate(OnPathUpdate);
+
+        var speed = (float)GameConst.ENEMY_PATH_MOVEMENT;
+        speed *= GetSpeedMultiply(enemyConfig.speedType);
+        
+        transform.DOPath(worldPath,speed).SetEase(Ease.Linear).OnUpdate(OnPathUpdate);
+    }
+
+    private float GetSpeedMultiply(EnemySpeedType _speedType)
+    {
+        switch (_speedType)
+        {
+            case EnemySpeedType.Slow:
+                return GameConst.ENEMY_PATH_MOVEMENT_SLOW;
+                
+            case EnemySpeedType.Normal:
+                default:
+                return GameConst.ENEMY_PATH_MOVEMENT_NORMAL;
+
+            case EnemySpeedType.Fast:
+                return GameConst.ENEMY_PATH_MOVEMENT_FAST;
+        }
     }
 
     public void DoDamage(int _damage)
@@ -67,6 +87,8 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if (!isActive) { return; }
+        
         if (col.CompareTag(GameConst.TAG_PLAYER))
         {
             Die();

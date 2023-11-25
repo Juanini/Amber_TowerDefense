@@ -53,10 +53,10 @@ public class GameManager : StateMachine<GameState>
 
         await LoadSceneAsync(GameConst.LEVEL_1);
 
-        AddState( GameState.Idle,         new GS_Idle(GameState.Idle), this);
-        AddState( GameState.CreateTower,  new GS_CreateTower(GameState.CreateTower), this);
-        AddState( GameState.Win,          new GS_Win(GameState.Win),          this);
-        AddState( GameState.Lose,         new GS_Lose(GameState.Lose),         this);
+        AddState(GameState.Idle,        new GS_Idle(GameState.Idle), this);
+        AddState(GameState.CreateTower, new GS_CreateTower(GameState.CreateTower), this);
+        AddState( GameState.Win,        new GS_Win(GameState.Win), this);
+        AddState( GameState.Lose,       new GS_Lose(GameState.Lose), this);
         
         // AddState( GameState.Paused,       new GS_Paused(GameState.Paused),       this);
         
@@ -70,7 +70,6 @@ public class GameManager : StateMachine<GameState>
     
     public async UniTask OnLevelLoaded(Level _level)
     {
-        
         levelActive = _level;
         playerHealth = levelActive.levelConfig.PlayerHealth;
         playerGold = levelActive.levelConfig.InitialGold;
@@ -79,8 +78,6 @@ public class GameManager : StateMachine<GameState>
 
         GameEventManager.TriggerEvent(GameEvents.UPDATE_INGAME_UI);
 
-        // Setup Enemies
-        
     }
     
     public async UniTask LoadSceneAsync(string sceneName)

@@ -25,10 +25,17 @@ public class Level : MonoBehaviour
         
         foreach (var enemyToSpawn in levelConfig.enemiesToSpawn)
         {
-            var enemy = await AssetsManager.Ins.GetEnemy(enemyToSpawn);
-            enemy.Init();
+            if (enemyToSpawn == EnemyType.NoEnemy)
+            {
+                await UniTask.Delay(2000);
+            }
+            else
+            {
+                var enemy = await AssetsManager.Ins.GetEnemy(enemyToSpawn);
+                enemy.Init();
+                await UniTask.Delay(levelConfig.spawnTime);
+            }
 
-            await UniTask.Delay(levelConfig.spawnTime);
         }
     }
 }
