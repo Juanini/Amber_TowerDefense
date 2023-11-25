@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     public bool IsActive => isActive;
 
     private int health;
+
+    private Tween pathTween;
     
     public void Init()
     {
@@ -42,8 +44,17 @@ public class Enemy : MonoBehaviour
 
         var speed = (float)GameConst.ENEMY_PATH_MOVEMENT;
         speed *= GetSpeedMultiply(enemyConfig.speedType);
-        
-        transform.DOPath(worldPath,speed).SetEase(Ease.Linear).OnUpdate(OnPathUpdate);
+
+        KillPath();
+        pathTween = transform.DOPath(worldPath,speed).SetEase(Ease.Linear).OnUpdate(OnPathUpdate);
+    }
+
+    private void KillPath()
+    {
+        if (pathTween.IsActive())
+        {
+            pathTween.Kill();
+        }
     }
 
     private float GetSpeedMultiply(EnemySpeedType _speedType)
@@ -70,6 +81,7 @@ public class Enemy : MonoBehaviour
         {
             Die();
             GiveGold();
+            GameManager.Ins.EnemyKilled();
         }
         
         enemyHealthBar.TakeDamage(_damage);
@@ -77,9 +89,9 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        KillPath();
         isActive = false;
         gameObject.gameObject.SetActive(false);
-        GameManager.Ins.EnemyKilled();
     }
 
     private void GiveGold()

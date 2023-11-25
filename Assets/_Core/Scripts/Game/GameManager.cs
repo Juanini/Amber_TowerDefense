@@ -22,12 +22,11 @@ public class GameManager : StateMachine<GameState>
     public Level LevelActive => levelActive;
 
     private int enemyKilled = 0;
+    private int enemiesInvaded = 0;
     private int enemiesToKill = 0;
     
     [HideInInspector] public TowerType towerTypeToCreate;
     
-    
-
     // * =====================================================================================================================================
     // * MAIN
 
@@ -86,6 +85,7 @@ public class GameManager : StateMachine<GameState>
         playerHealth = levelActive.levelConfig.PlayerHealth;
         playerGold = levelActive.levelConfig.InitialGold;
 
+        enemiesInvaded = 0;
         enemyKilled = 0;
         enemiesToKill = 0;
         
@@ -116,6 +116,8 @@ public class GameManager : StateMachine<GameState>
     public void OnEnemyInvaded(Enemy _enemy)
     {
         if (stateActive.StateKey == GameState.Win || stateActive.StateKey == GameState.Lose ) { return; }
+
+        enemiesInvaded++;
         
         Trace.Log(this.name + " - " + "ENEMY INVADED!");
         playerHealth -= _enemy.GetAttackValue();
@@ -145,7 +147,7 @@ public class GameManager : StateMachine<GameState>
         
         enemyKilled++;
 
-        if (enemyKilled >= enemiesToKill)
+        if (enemyKilled >= (enemiesToKill - enemiesInvaded))
         {
             TransitionToState(GameState.Win);
         }
