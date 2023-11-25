@@ -10,9 +10,9 @@ public class GS_Win : StateBase<GameState>
     {
     }
 
-    public override UniTask EnterState()
+    public override async UniTask EnterState()
     {
-        return default;
+        await UI.Ins.nav.ShowPopup<WinView>();
     }
 
     public override UniTask ExitState()

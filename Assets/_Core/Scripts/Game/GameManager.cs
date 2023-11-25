@@ -20,10 +20,12 @@ public class GameManager : StateMachine<GameState>
 
     private Level levelActive;
     public Level LevelActive => levelActive;
+
+    private int enemyKilled = 0;
     
     [HideInInspector] public TowerType towerTypeToCreate;
     
-    public Enemy enemyTest;
+    
 
     // * =====================================================================================================================================
     // * MAIN
@@ -44,6 +46,8 @@ public class GameManager : StateMachine<GameState>
     {
         await UI.Ins.Init();
         await UI.Ins.nav.ShowDialog<IngameView>();
+        
+        enemyKilled = 0;
 
         await LoadSceneAsync(GameConst.LEVEL_1);
 
@@ -68,12 +72,13 @@ public class GameManager : StateMachine<GameState>
         levelActive = _level;
         playerHealth = levelActive.levelConfig.PlayerHealth;
         playerGold = levelActive.levelConfig.InitialGold;
-        
+
         await UI.Ins.FadeOutPanel();
 
         GameEventManager.TriggerEvent(GameEvents.UPDATE_INGAME_UI);
 
-        enemyTest.Init();
+        // Setup Enemies
+        
     }
     
     public async UniTask LoadSceneAsync(string sceneName)
@@ -107,10 +112,15 @@ public class GameManager : StateMachine<GameState>
             TransitionToState(GameState.Lose);
         }
     }
-
+    
     public void EnemyKilled()
     {
-        
+        enemyKilled++;
+
+        if (enemyKilled >= levelActive.levelConfig.enemiesToSpawn.Count)
+        {
+            TransitionToState(GameState.Win);
+        }
     }
     
     // * =====================================================================================================================================

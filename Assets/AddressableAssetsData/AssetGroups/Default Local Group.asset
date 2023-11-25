@@ -47,6 +47,33 @@ MonoBehaviour:
     m_SerializedLabels:
     - default
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19235e505ae5f453cbd3f163a604c1f4
+    m_Address: Assets/_Core/Prefabs/UI/Views/MainMenuView.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f264b494714140daae08079574cf141
+    m_Address: Assets/_Core/Prefabs/UI/Views/LevelSelectView.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7450dfb4f979a4d0aa393d4198f14ca7
+    m_Address: Assets/_Core/Prefabs/Enemies/EnemyDevil.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f784539e66b7e44da8e55fd3731b5fa3
+    m_Address: Assets/_Core/Prefabs/Enemies/EnemyBerserk.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bcc726160b93b4307aa64553e48be354
+    m_Address: Assets/_Core/Prefabs/Enemies/EnemyScorpio.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2678059cb15c142a68a34a09db38f58c, type: 2}
   m_SchemaSet:

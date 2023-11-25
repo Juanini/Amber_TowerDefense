@@ -10,6 +10,7 @@ public class Tower : MonoBehaviour
     [BoxGroup("Properties")] public TowerConfig towerConfig;
     
     [BoxGroup("Elements")][SerializeField] private TouchDetector touchDetector;
+    [BoxGroup("Elements")][SerializeField] private CircleCollider2D collider2D;
 
     protected List<Enemy> enemiesInRange = new List<Enemy>();
 
@@ -19,6 +20,7 @@ public class Tower : MonoBehaviour
     protected void Init()
     {
         touchDetector.OnTouched += OnTowerSelected;
+        collider2D.radius = towerConfig.range;
     }
 
     private void OnTowerSelected(PointerEventData _eventData)

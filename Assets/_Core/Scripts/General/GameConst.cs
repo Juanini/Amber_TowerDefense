@@ -48,6 +48,6 @@ public enum TowerNodeState
 public enum EnemyType
 {
     Devil = 0,
-    Tank,
+    Agile,
     Berserk
 }

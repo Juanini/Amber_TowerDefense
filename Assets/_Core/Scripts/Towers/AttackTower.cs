@@ -31,10 +31,8 @@ public class AttackTower : Tower
     {
         if (enemiesInRange.Count <= 0) { return; }
         
-        // Actualiza el objetivo
         UpdateTarget();
 
-        // Dispara si el contador lo permite
         if (fireCountdown <= 0f && enemyTarget != null)
         {
             Shoot();
