@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf5474793cd249459597c3521883c7b, type: 3}
   m_Name: Level2Config
   m_EditorClassIdentifier: 
+  sceneName: Level2
   PlayerHealth: 30
   InitialGold: 100
   NumberOfWaves: 5
+  spawnTime: 1500
+  enemiesToSpawn: 
