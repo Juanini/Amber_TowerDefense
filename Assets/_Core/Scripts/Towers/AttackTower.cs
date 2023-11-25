@@ -22,9 +22,10 @@ public class AttackTower : Tower
         Init();
     }
 
-    private void Init()
+    private new void Init()
     {
-        
+        fireCountdown = towerConfig.fireCount;
+        fireRate = towerConfig.fireRate;
     }
 
     void Update()
@@ -69,7 +70,7 @@ public class AttackTower : Tower
     private async void Shoot()
     {
         var projectile = await AssetsManager.Ins.GetProjectile(towerConfig.projectileType);
-        projectile.Shot( shotPos.transform.position, enemyTarget);
+        projectile.Shot( shotPos.transform.position, enemyTarget, towerConfig.projectileDamage);
     }
 
     // Dibujar el rango de la torre en el editor

@@ -12,8 +12,11 @@ public abstract class Projectile : MonoBehaviour
 
     protected Enemy target;
 
-    public void Shot(Vector2 _shootPos, Enemy _target)
+    private int damage;
+
+    public void Shot(Vector2 _shootPos, Enemy _target, int _damage = GameConst.TOWER_STANDARD_DAMAGE)
     {
+        damage = _damage;
         isActive = true;
         SetTarget(_target);
         transform.position = _shootPos;
@@ -41,7 +44,7 @@ public abstract class Projectile : MonoBehaviour
         {
             if (isActive)
             {
-                target.DoDamage();
+                target.DoDamage(damage);
             }
 
             Deactivate();

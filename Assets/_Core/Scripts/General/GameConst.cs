@@ -6,6 +6,8 @@ public class GameConst
 
     public const string LEVEL_1 = "Level1";
     public const string LEVEL_2 = "Level2";
+
+    public const int TOWER_STANDARD_DAMAGE = 10;
 }
 
 public enum Direction { UP = 0, DOWN, RIGHT, LEFT }

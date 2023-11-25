@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] protected EnemyConfig enemyConfig;
     [SerializeField] private GameObject visuals;
+
+    public EnemyType enemyType;
     
     public EnemyHealthBar enemyHealthBar;
 
@@ -15,10 +17,18 @@ public class Enemy : MonoBehaviour
     
     private Direction facingDirection = Direction.RIGHT;
     public Direction FacingDirection => facingDirection;
+
+    private bool isActive;
+    public bool IsActive => isActive;
+
+    private int health;
     
     public void Init()
     {
+        health = enemyConfig.health;
+        
         enemyHealthBar.Init(enemyConfig.health);
+        isActive = true;
         MoveOnPath();
     }
 
@@ -30,21 +40,36 @@ public class Enemy : MonoBehaviour
         transform.DOPath(worldPath,60).SetEase(Ease.Linear).OnUpdate(OnPathUpdate);
     }
 
-    public void DecreaseLife()
+    public void DoDamage(int _damage)
     {
-        Trace.Log(this.name + " - " + "Decrease Life");
-        enemyHealthBar.TakeDamage(20);
+        health -= _damage;
+
+        if (health <= 0)
+        {
+            Die();
+            GiveGold();
+        }
+        
+        enemyHealthBar.TakeDamage(_damage);
     }
 
-    public void DoDamage()
+    private void Die()
     {
-        DecreaseLife();   
+        isActive = false;
+        gameObject.gameObject.SetActive(false);
+        GameManager.Ins.EnemyKilled();
+    }
+
+    private void GiveGold()
+    {
+        
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag(GameConst.TAG_PLAYER))
         {
+            Die();
             GameManager.Ins.OnEnemyInvaded(this);
         }
     }

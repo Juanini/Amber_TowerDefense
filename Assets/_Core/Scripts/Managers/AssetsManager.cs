@@ -24,6 +24,12 @@ public class AssetsManager : SerializedMonoBehaviour
         Ins = this;
     }
 
+    public void Init()
+    {
+        projectiles = new List<Projectile>();
+        enemiesInstantiated = new List<Tuple<EnemyType, Enemy>>();
+    }
+
     public async UniTask<Tower> GetTowerAssetByType(TowerType _towerType)
     {
         switch (_towerType)
@@ -66,8 +72,34 @@ public class AssetsManager : SerializedMonoBehaviour
             return null;
         }
     }
+    
+    // * =====================================================================================================================================
+    // * PROJECTILES
 
-    public List<Projectile> projectiles;
+    private List<Tuple<EnemyType, Enemy>> enemiesInstantiated;
+    
+    public async UniTask<Enemy> GetEnemy(EnemyType _enemyType)
+    {
+        foreach (var enemy in enemiesInstantiated)
+        {
+            if (enemy.Item1 == _enemyType && !enemy.Item2.IsActive)
+            {
+                return enemy.Item2;
+            }
+        }
+
+        var obj = await LoadPrefabAsync(enemyAssets[(int)_enemyType]);
+        var e = obj.GetComponent<Enemy>();
+        enemiesInstantiated.Add(new Tuple<EnemyType, Enemy>(_enemyType, e));
+        
+        return e;
+    }
+
+    // * =====================================================================================================================================
+    // * PROJECTILES
+
+    private List<Projectile> projectiles;
+    
     public async UniTask<Projectile> GetProjectile(ProjectileType _type)
     {
         foreach (var projectile in projectiles)

@@ -373,6 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerConfig: {fileID: 11400000, guid: dbb6e6d6cb62a43669b939a29ee5dc77, type: 2}
   touchDetector: {fileID: 5023150504871594038}
+  collider2D: {fileID: 3873528778528982204}
   shotPos: {fileID: 7046675275115258531}
   fireRate: 1
   enemyTarget: {fileID: 0}

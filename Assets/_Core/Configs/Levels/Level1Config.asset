@@ -15,4 +15,5 @@ MonoBehaviour:
   PlayerHealth: 20
   InitialGold: 50
   NumberOfWaves: 3
-  enemiesToSpawn: 00000000010000000000000000000000
+  spawnTime: 1500
+  enemiesToSpawn: 000000000000000000000000

@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58df6169420054d11980f6cfe0c2e59c, type: 3}
   m_Name: TowerConfig_Normal
   m_EditorClassIdentifier: 
-  range: 2
+  range: 2.5
   projectileType: 1
+  projectileDamage: 20
+  fireRate: 1
+  fireCount: 1

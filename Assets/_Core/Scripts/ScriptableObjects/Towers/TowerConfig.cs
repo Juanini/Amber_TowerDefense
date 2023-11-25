@@ -8,5 +8,9 @@ public class TowerConfig : ScriptableObject
 {
     [BoxGroup("Properties")] public float range;
     [BoxGroup("Properties")] public ProjectileType projectileType;
+    
+    [BoxGroup("Attack Tower")] public int projectileDamage;
+    [BoxGroup("Attack Tower")] public int fireRate;
+    [BoxGroup("Attack Tower")] public int fireCount;
 
 }

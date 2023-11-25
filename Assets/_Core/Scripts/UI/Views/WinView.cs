@@ -13,8 +13,8 @@ public class WinView : UIView
     {
         base.OnViewCreated();
         
-        mainMenuButton.onClick.AddListener(OnMainMenuClick);
-        restartButton.onClick.AddListener(OnRestartClick);
+        // mainMenuButton.onClick.AddListener(OnMainMenuClick);
+        // restartButton.onClick.AddListener(OnRestartClick);
     }
 
     private void OnRestartClick()

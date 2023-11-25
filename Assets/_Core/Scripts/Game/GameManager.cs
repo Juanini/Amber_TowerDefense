@@ -47,6 +47,8 @@ public class GameManager : StateMachine<GameState>
         await UI.Ins.Init();
         await UI.Ins.nav.ShowDialog<IngameView>();
         
+        AssetsManager.Ins.Init();
+        
         enemyKilled = 0;
 
         await LoadSceneAsync(GameConst.LEVEL_1);
@@ -115,6 +117,8 @@ public class GameManager : StateMachine<GameState>
     
     public void EnemyKilled()
     {
+        if (stateActive.StateKey == GameState.Win) { return; }
+        
         enemyKilled++;
 
         if (enemyKilled >= levelActive.levelConfig.enemiesToSpawn.Count)
