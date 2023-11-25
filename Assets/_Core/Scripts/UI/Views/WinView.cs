@@ -14,12 +14,13 @@ public class WinView : UIView
         base.OnViewCreated();
         
         // mainMenuButton.onClick.AddListener(OnMainMenuClick);
-        // restartButton.onClick.AddListener(OnRestartClick);
+        restartButton.onClick.AddListener(OnRestartClick);
     }
 
     private void OnRestartClick()
     {
-        
+        navController.HideNavLastView();
+        GameManager.Ins.RestartGame();   
     }
 
     private void OnMainMenuClick()

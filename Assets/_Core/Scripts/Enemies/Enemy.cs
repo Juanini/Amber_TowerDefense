@@ -30,6 +30,8 @@ public class Enemy : MonoBehaviour
         enemyHealthBar.Init(enemyConfig.health);
         isActive = true;
         MoveOnPath();
+        
+        gameObject.SetActive(true);
     }
 
     private void MoveOnPath()

@@ -22,6 +22,7 @@ public class GameManager : StateMachine<GameState>
     public Level LevelActive => levelActive;
 
     private int enemyKilled = 0;
+    private int enemiesToKill = 0;
     
     [HideInInspector] public TowerType towerTypeToCreate;
     
@@ -67,12 +68,36 @@ public class GameManager : StateMachine<GameState>
     
     // * =====================================================================================================================================
     // * LEVELS
+
+    public async void RestartGame()
+    {
+        await UI.Ins.FadeInPanel();
+        await SceneManager.UnloadSceneAsync(levelActive.levelConfig.sceneName);
+        await LoadSceneAsync(levelActive.levelConfig.sceneName);
+        
+        await UI.Ins.FadeOutPanel();
+        
+        await EnterInitialState(States[GameState.Idle]);
+    }
     
     public async UniTask OnLevelLoaded(Level _level)
     {
         levelActive = _level;
         playerHealth = levelActive.levelConfig.PlayerHealth;
         playerGold = levelActive.levelConfig.InitialGold;
+
+        enemyKilled = 0;
+        enemiesToKill = 0;
+        
+        foreach (var enemy in levelActive.levelConfig.enemiesToSpawn)
+        {
+            if (enemy != EnemyType.NoEnemy)
+            {
+                enemiesToKill++;
+            }
+        }
+
+        levelActive.SpawnEnemies();
 
         await UI.Ins.FadeOutPanel();
 
@@ -90,6 +115,8 @@ public class GameManager : StateMachine<GameState>
 
     public void OnEnemyInvaded(Enemy _enemy)
     {
+        if (stateActive.StateKey == GameState.Win || stateActive.StateKey == GameState.Lose ) { return; }
+        
         Trace.Log(this.name + " - " + "ENEMY INVADED!");
         playerHealth -= _enemy.GetAttackValue();
 
@@ -118,7 +145,7 @@ public class GameManager : StateMachine<GameState>
         
         enemyKilled++;
 
-        if (enemyKilled >= levelActive.levelConfig.enemiesToSpawn.Count)
+        if (enemyKilled >= enemiesToKill)
         {
             TransitionToState(GameState.Win);
         }

@@ -16,10 +16,9 @@ public class Level : MonoBehaviour
     private async void Start()
     {
         await GameManager.Ins.OnLevelLoaded(this);
-        SpawnEnemies();
     }
 
-    private async UniTask SpawnEnemies()
+    public async UniTask SpawnEnemies()
     {
         Trace.Log(this.name + " - " + "Spawn Enemies");
         

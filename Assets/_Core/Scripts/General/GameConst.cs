@@ -12,7 +12,7 @@ public class GameConst
     public const int ENEMY_PATH_MOVEMENT = 70;
     public const float ENEMY_PATH_MOVEMENT_SLOW = 1.5f;
     public const float ENEMY_PATH_MOVEMENT_NORMAL = 1;
-    public const float ENEMY_PATH_MOVEMENT_FAST = 0.6f;
+    public const float ENEMY_PATH_MOVEMENT_FAST = 0.5f;
 }
 
 public enum Direction { UP = 0, DOWN, RIGHT, LEFT }

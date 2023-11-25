@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5548f9579993d48dd974991cd233c012, type: 3}
   m_Name: EnemyConfig_Agile
   m_EditorClassIdentifier: 
-  health: 600
+  health: 150
   attackValue: 1
   speedType: 2
   goldToGive: 100
