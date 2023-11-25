@@ -30,6 +30,7 @@ public class LevelManager : MonoBehaviour
         
         towerNodeSelected.SetState(TowerNodeState.Busy);
         tower.transform.position = towerNodeSelected.towerSpawnPos.transform.position;
+        tower.transform.parent = towerNodeSelected.transform;
     }
     
     #endregion
