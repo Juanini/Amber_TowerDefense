@@ -222,6 +222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerCreationButton (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5044955251189402955, guid: 271397c22c14a4f049d0bdc3352a1c2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5575587993908736491, guid: 271397c22c14a4f049d0bdc3352a1c2d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2445,6 +2449,7 @@ MonoBehaviour:
   closeButton: {fileID: 357148395}
   towerCreationContainer: {fileID: 1661117169}
   towerOptionsContainer: {fileID: 1821755373}
+  removeTowerButton: {fileID: 706476097}
 --- !u!1001 &3933245030007693386
 PrefabInstance:
   m_ObjectHideFlags: 0
