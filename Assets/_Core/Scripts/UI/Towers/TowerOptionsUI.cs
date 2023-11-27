@@ -11,12 +11,14 @@ public class TowerOptionsUI : MonoBehaviour
     [BoxGroup("Tower Creation")] public GameObject towerCreationContainer;
     
     [BoxGroup("Tower Options")] public GameObject towerOptionsContainer;
+    [BoxGroup("Tower Options")] public Button removeTowerButton;
     
     public void Init()
     {
         closeButton.onClick.AddListener(OnCloseClick);
+        removeTowerButton.onClick.AddListener(OnRemoveTowerClick);
     }
-    
+
     // * =====================================================================================================================================
     // * 
 
@@ -57,12 +59,25 @@ public class TowerOptionsUI : MonoBehaviour
     // * TOWER OPTIONS
 
     #region TOWER OPTIONS
-    
+
     public void ShowTowerOptions(Tower _tower)
     {
+        LevelManager.Ins.towerSelected = _tower;
         closeButton.gameObject.SetActive(true);
         towerOptionsContainer.transform.position = _tower.transform.position;
         towerOptionsContainer.gameObject.SetActive(true);
+    }
+
+    public void HideTowerOptions()
+    {
+        closeButton.gameObject.SetActive(true);
+        towerOptionsContainer.gameObject.SetActive(true);
+    }
+    
+    private void OnRemoveTowerClick()
+    {
+        HideTowerOptions();
+        LevelManager.Ins.towerSelected.Remove();
     }
     
     #endregion

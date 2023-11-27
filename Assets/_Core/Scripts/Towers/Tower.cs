@@ -45,4 +45,9 @@ public class Tower : MonoBehaviour
             OnEnemyExit();
         }
     }
+
+    public void Remove()
+    {
+        Destroy(gameObject);
+    }
 }

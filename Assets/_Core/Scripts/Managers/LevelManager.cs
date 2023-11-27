@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Ins;
 
     [HideInInspector] public TowerNode towerNodeSelected;
+    [HideInInspector] public Tower towerSelected;
 
     private List<Tower> levelTowerList;
     
