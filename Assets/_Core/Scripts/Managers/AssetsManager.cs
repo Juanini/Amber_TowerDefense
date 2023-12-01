@@ -5,19 +5,18 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Cysharp.Threading.Tasks;
-using Sirenix.OdinInspector;
 
-public class AssetsManager : SerializedMonoBehaviour
+public class AssetsManager : MonoBehaviour
 {
     public static AssetsManager Ins;
 
-    [BoxGroup("Projectiles")][SerializeField] private AssetReference projectileArrow;
-    [BoxGroup("Projectiles")][SerializeField] private AssetReference projectileMagic;
+    [SerializeField] private AssetReference projectileArrow;
+    [SerializeField] private AssetReference projectileMagic;
     
-    [BoxGroup("Towers")][SerializeField] private TowerLevelsConfig towersLevelsConfig_Archer;
-    [BoxGroup("Towers")][SerializeField] private TowerLevelsConfig towersLevelsConfig_Magic;
+    [SerializeField] private TowerLevelsConfig towersLevelsConfig_Archer;
+    [SerializeField] private TowerLevelsConfig towersLevelsConfig_Magic;
 
-    [BoxGroup("Enemies")][SerializeField] private List<AssetReference> enemyAssets;
+    [SerializeField] private List<AssetReference> enemyAssets;
 
     private void Awake()
     {

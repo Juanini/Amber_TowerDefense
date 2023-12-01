@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using HannieEcho.UI;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,10 +11,10 @@ public class UI : MonoBehaviour
 {
     public static UI Ins;
     
-    [BoxGroup("UI")] public UIManager uiManager;
-    [BoxGroup("UI")] public UINavigation nav;
-    [BoxGroup("UI")] public TowerOptionsUI towerOptionsUI;
-    [BoxGroup("UI")] public Image fadePanel;
+    public UIManager uiManager;
+    public UINavigation nav;
+    public TowerOptionsUI towerOptionsUI;
+    public Image fadePanel;
 
     // * =====================================================================================================================================
     // * MAIN

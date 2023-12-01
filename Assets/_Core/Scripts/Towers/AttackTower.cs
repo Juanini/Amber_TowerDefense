@@ -3,13 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackTower : Tower
 {
-    [BoxGroup("Elements")] public GameObject shotPos;
+    public GameObject shotPos;
 
     public float fireRate = 1f;
     private float fireCountdown = 0f;

@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using DG.Tweening.Plugins.Core.PathCore;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    [BoxGroup("Properties")] public LevelConfig levelConfig;
-    [BoxGroup("Properties")] public DOTweenPath path;
+    public LevelConfig levelConfig;
+    public DOTweenPath path;
     
 
     private async void Start()

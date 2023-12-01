@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class TowerNode : MonoBehaviour
 {
-    [BoxGroup("Elements")] public GameObject towerSpawnPos;
+    public GameObject towerSpawnPos;
     
     [SerializeField] private TouchDetector touchDetector;
 

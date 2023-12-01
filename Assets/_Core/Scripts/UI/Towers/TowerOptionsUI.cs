@@ -1,17 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TowerOptionsUI : MonoBehaviour
 {
-    [BoxGroup("General")] public Button closeButton;
+    public Button closeButton;
     
-    [BoxGroup("Tower Creation")] public GameObject towerCreationContainer;
+    public GameObject towerCreationContainer;
     
-    [BoxGroup("Tower Options")] public GameObject towerOptionsContainer;
-    [BoxGroup("Tower Options")] public Button removeTowerButton;
+    public GameObject towerOptionsContainer;
+    public Button removeTowerButton;
     
     public void Init()
     {

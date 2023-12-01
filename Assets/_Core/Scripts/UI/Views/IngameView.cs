@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks.Triggers;
 using GameEventSystem;
 using HannieEcho.UI;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class IngameView : UIView
 {
-    [BoxGroup("Elements")] public IconWithInfo playerHealth;
-    [BoxGroup("Elements")] public IconWithInfo playerGold;
-    [BoxGroup("Elements")] public IconWithInfo enemyWaves;
+    public IconWithInfo playerHealth;
+    public IconWithInfo playerGold;
+    public IconWithInfo enemyWaves;
     
     public override void OnViewCreated()
     {

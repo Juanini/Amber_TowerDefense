@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public abstract class Projectile : MonoBehaviour
 {
-    [BoxGroup("Elements")] public GameObject visuals;
+    public GameObject visuals;
     
     private bool isActive;
     public bool IsActive => isActive;

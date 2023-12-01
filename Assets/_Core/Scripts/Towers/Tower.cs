@@ -1,16 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Tower : MonoBehaviour
 {
-    [BoxGroup("Properties")] public TowerConfig towerConfig;
+    public TowerConfig towerConfig;
     
-    [BoxGroup("Elements")][SerializeField] private TouchDetector touchDetector;
-    [BoxGroup("Elements")][SerializeField] private CircleCollider2D collider2D;
+    [SerializeField] private TouchDetector touchDetector;
+    [SerializeField] private CircleCollider2D collider2D;
 
     protected List<Enemy> enemiesInRange = new List<Enemy>();
 
